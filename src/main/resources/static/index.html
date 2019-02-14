@@ -15,10 +15,19 @@
             <div id="alleschakers"></div>
 </div>
 
+<br>
+
 <div align="center" class="col-auto mx-auto" style="max-width:300px">
     <p class="h4 mb-4">Nieuwe speler toevoegen</p>
     <br>
-    <input type="text" id="voornaam" class="form-control mb-4" placeholder="Voornaam speler">
+    <input type="text" id="voornaam" class="form-control mb-1" placeholder="Voornaam ">
+    <input type="text" id="achternaam" class="form-control mb-1" placeholder="Achternaam">
+    <input type="text" id="tussenvoegsel" class="form-control mb-1" placeholder="Tussenvoegsel">
+    <input type="date" id="geboortedatum" class="form-control mb-1" placeholder="Geboortedatum ">
+    <input type="text" id="gewonnenPartijen" class="form-control mb-1" placeholder="Partijen gewonnen">
+    <input type="text" id="remises" class="form-control mb-1" placeholder="Aantal remises ">
+    <input type="text" id="verlorenPartijen" class="form-control mb-1" placeholder="Partijen verloren">
+
     <input type="button" onclick="postversturen()" value="Voeg speler toe">
 
 
@@ -61,6 +70,12 @@ function postversturen()
     {
         var dto = {};
         dto.voornaam = $('#voornaam').val();
+        dto.achternaam = $('#achternaam').val();
+        dto.tussenvoegsel = $('#tussenvoegsel').val();
+        dto.geboortedatum = $('#geboortedatum').val();
+        dto.gewonnenPartijen = $('#gewonnenPartijen').val();
+        dto.remises = $('#remises').val();
+        dto.verlorenPartijen = $('#verlorenPartijen').val();
         dto = JSON.stringify(dto);
         $.ajax
         ({
@@ -70,7 +85,7 @@ function postversturen()
                 contentType : "application/json",
                 success: function(result)
                 {
-                console.log('gelukt');
+                console.log('Toevoegen nieuwe speler is gelukt');
                 }
         });
 
