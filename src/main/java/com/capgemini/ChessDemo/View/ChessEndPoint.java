@@ -25,9 +25,9 @@ public class ChessEndPoint
             return "het is gelukt";
         }
 
-        @DeleteMapping("{deletespeler}")
-        public String spelerdeleten(){
-            return null;
-        }
+//        @DeleteMapping("{deletespeler}")
+//        public String spelerdeleten(){
+//            return null;
+//        }
 
     }

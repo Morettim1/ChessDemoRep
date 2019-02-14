@@ -68,7 +68,7 @@ $(document).on('click', '#ophaalbutton', function()
 function ophaalfunctie(antwoordserver)
     {
         $('#alleschakers').html(antwoordserver);
-        var opbouwString = "<table class='table table-hover' id='myTable' border=2><thead class='thead-light'><tr><th>Voornaam</th><th>Achternaam</th><th>Tussenvoegsel</th><th>Geboortedatum</th><th>Gewonnen Partijen</th><th>Remises</th><th>Verloren Partijen</th><th>Delete</th></tr></thead>";
+        var opbouwString = "<table table-hover id='myTable' border=2><thead class='thead-light'><tr><th>Voornaam</th><th>Achternaam</th><th>Tussenvoegsel</th><th>Geboortedatum</th><th>Gewonnen Partijen</th><th>Remises</th><th>Verloren Partijen</th><th>Delete</th></tr></thead>";
 
             for (i = 0; i < antwoordserver.length; i++)
             {
@@ -81,7 +81,6 @@ function ophaalfunctie(antwoordserver)
                                 +"<td>"+antwoordserver[i].remises+"</td>"
                                 +"<td>"+antwoordserver[i].verlorenPartijen+"</td>"
                                 +"<td><button type='button' onclick='deleteSpeler()'>Delete</button></td>"
-                                <!--+"<td><input type="button" value="Delete" onclick="deleteRow(this)"></td>"-->
                                 +"</tr>";
 
             }
@@ -118,12 +117,12 @@ function postversturen()
    {
         var dto = {};
         dto.voornaam = $('#voornaam').val();
-        <!--dto.achternaam = $('#achternaam').val();-->
-        <!--dto.tussenvoegsel = $('#tussenvoegsel').val();-->
-        <!--dto.geboortedatum = $('#geboortedatum').val();-->
-        <!--dto.gewonnenPartijen = $('#gewonnenPartijen').val();-->
-        <!--dto.remises = $('#remises').val();-->
-        <!--dto.verlorenPartijen = $('#verlorenPartijen').val();-->
+        dto.achternaam = $('#achternaam').val();
+        dto.tussenvoegsel = $('#tussenvoegsel').val();
+        dto.geboortedatum = $('#geboortedatum').val();
+        dto.gewonnenPartijen = $('#gewonnenPartijen').val();
+        dto.remises = $('#remises').val();
+        dto.verlorenPartijen = $('#verlorenPartijen').val();
         dto = JSON.stringify(dto);
         $.ajax
            ({
