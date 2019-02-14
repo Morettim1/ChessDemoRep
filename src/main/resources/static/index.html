@@ -6,16 +6,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
-
 </head>
 
 <body>
-<div class="col-auto mx-auto" style="max-width:800px">
-    <form class="text-center border border-light p-5">
+<div align="center" class="col-auto mx-auto" style="max-width:800px">
         <p class="h4 mb-4">Welkom bij ChessDemo!</p>
             <button id ="ophaalbutton">Alle schakers ophalen</button>
-            <div id="alleschakers">test</div>
-    </form>
+            <div id="alleschakers"></div>
+
 </div>
 
 <script>
@@ -35,11 +33,20 @@ $(document).on('click', '#ophaalbutton', function()
 function ophaalfunctie(antwoordserver)
     {
         $('#alleschakers').html(antwoordserver);
-
-        for (i = 0; i < antwoordserver.length; i++)
-        {
-            document.getElementById('alleschakers').innerHTML += antwoordserver[i].voornaam + "<br>";
-        };
+        var opbouwString = "<table border=2>";
+            for (i = 0; i < antwoordserver.length; i++)
+            {
+                opbouwString += "<tr><td>"+antwoordserver[i].voornaam+"</td>"
+                                +"<td>"+antwoordserver[i].achternaam+"</td>"
+                                +"<td>"+antwoordserver[i].tussenvoegsel+"</td>"
+                                +"<td>"+antwoordserver[i].geboortedatum+"</td>"
+                                +"<td>"+antwoordserver[i].gewonnenPartijen+"</td>"
+                                +"<td>"+antwoordserver[i].remises+"</td>"
+                                +"<td>"+antwoordserver[i].verlorenPartijen+"</td>"
+                                +"</tr>";
+            }
+            opbouwString += "</table>";
+            document.getElementById('alleschakers').innerHTML = opbouwString;
     }
 
 </script>
