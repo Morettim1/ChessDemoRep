@@ -10,9 +10,17 @@
 
 <body>
 <div align="center" class="col-auto mx-auto" style="max-width:800px">
-        <p class="h4 mb-4">Welkom bij ChessDemo!</p>
+        <p class="h4 mb-4">Welkom bij ChessDemo! Klik op de knop om de spelers op te halen</p>
             <button id ="ophaalbutton">Alle schakers ophalen</button>
             <div id="alleschakers"></div>
+</div>
+
+<div align="center" class="col-auto mx-auto" style="max-width:300px">
+    <p class="h4 mb-4">Nieuwe speler toevoegen</p>
+    <br>
+    <input type="text" id="voornaam" class="form-control mb-4" placeholder="Voornaam speler">
+    <input type="button" onclick="postversturen()" value="Voeg speler toe">
+
 
 </div>
 
@@ -49,5 +57,23 @@ function ophaalfunctie(antwoordserver)
             document.getElementById('alleschakers').innerHTML = opbouwString;
     }
 
+function postversturen()
+    {
+        var dto = {};
+        dto.voornaam = $('#voornaam').val();
+        dto = JSON.stringify(dto);
+        $.ajax
+        ({
+                type: "POST",
+                url: "/nieuwespeler",
+                data: dto,
+                contentType : "application/json",
+                success: function(result)
+                {
+                console.log('gelukt');
+                }
+        });
+
+    }
 </script>
 </body>
