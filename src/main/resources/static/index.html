@@ -29,17 +29,7 @@
             <br>
 
             <div id="alleschakers">
-                <table>
-                    <tr>
-                        <th>Voornaam</th>
-                        <th>Achternaam</th>
-                        <th>tussenvoegsel</th>
-                        <th>geboortedatum</th>
-                        <th>gewonnenPartijen</th>
-                        <th>remises</th>
-                        <th>verlorenPartijen</th>
-                    </tr>
-                </table>
+
             </div>
 </div>
 
@@ -78,7 +68,8 @@ $(document).on('click', '#ophaalbutton', function()
 function ophaalfunctie(antwoordserver)
     {
         $('#alleschakers').html(antwoordserver);
-        var opbouwString = "<table border=2>";
+        var opbouwString = "<table class='table table-hover' id='myTable' border=2><thead class='thead-light'><tr><th>Voornaam</th><th>Achternaam</th><th>Tussenvoegsel</th><th>Geboortedatum</th><th>Gewonnen Partijen</th><th>Remises</th><th>Verloren Partijen</th><th>Delete</th></tr></thead>";
+
             for (i = 0; i < antwoordserver.length; i++)
             {
 
@@ -89,6 +80,8 @@ function ophaalfunctie(antwoordserver)
                                 +"<td>"+antwoordserver[i].gewonnenPartijen+"</td>"
                                 +"<td>"+antwoordserver[i].remises+"</td>"
                                 +"<td>"+antwoordserver[i].verlorenPartijen+"</td>"
+                                +"<td><button type='button' onclick='deleteSpeler()'>Delete</button></td>"
+                                <!--+"<td><input type="button" value="Delete" onclick="deleteRow(this)"></td>"-->
                                 +"</tr>";
 
             }
@@ -120,5 +113,29 @@ function postversturen()
         });
 
     }
+
+   function deleteSpeler()
+   {
+        var dto = {};
+        dto.voornaam = $('#voornaam').val();
+        <!--dto.achternaam = $('#achternaam').val();-->
+        <!--dto.tussenvoegsel = $('#tussenvoegsel').val();-->
+        <!--dto.geboortedatum = $('#geboortedatum').val();-->
+        <!--dto.gewonnenPartijen = $('#gewonnenPartijen').val();-->
+        <!--dto.remises = $('#remises').val();-->
+        <!--dto.verlorenPartijen = $('#verlorenPartijen').val();-->
+        dto = JSON.stringify(dto);
+        $.ajax
+           ({
+                   type: "DELETE",
+                   url: "/deletespeler",
+                   data: dto,
+                   contentType : "application/json",
+                   success: function(result)
+                    {
+                        console.log('Deleten gelukt');
+                    }
+           });
+   }
 </script>
 </body>
